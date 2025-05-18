@@ -1,0 +1,89 @@
+### Swift ###
+# Build products
+.build/
+DerivedData/
+build/
+
+# Swift Package Manager
+.swiftpm/
+.netrc
+Package.resolved
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Xcode
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+*.xcscmblueprint
+*.xccheckout
+timeline.xctimeline
+playground.xcworkspace
+xcuserdata/
+
+# Vapor specific
+Public/
+Resources/
+
+# Server configurations
+.env
+*.pem
+*.key
+*.crt
+*.cer
+.env.*
+!.env.example
+config/*.json
+!config/example.json
+
+# Database
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Docker
+.docker/data/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.history/
+
+# Testing
+.coverage-data/
+coverage/
+
+# Temporary files
+tmp/
+temp/
+
+# Generated API documentation
+docs/api/
+
+# Certificates
+certs/
+
+# Deployment scripts
+deploy/
+!deploy/example/

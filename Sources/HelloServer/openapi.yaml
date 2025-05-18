@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  title: Swift Server API
+  description: A simple API for Swift server-side operations
+  version: 1.0.0
+servers:
+  - url: /
+paths:
+  /greeting:
+    get:
+      summary: Get a greeting message
+      operationId: getGreeting
+      parameters:
+        - name: name
+          in: query
+          description: Name to be greeted
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful greeting
+          content:
+            text/plain:
+              schema:
+                type: string
+                
+  /translate:
+    post:
+      summary: Translate text from English to French
+      operationId: translateText
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranslationRequest'
+      responses:
+        '200':
+          description: Successful translation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslationResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Translation service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    TranslationRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: Text to translate
+          example: "Hello, how are you today?"
+        sourceLanguage:
+          type: string
+          description: Source language code
+          default: "en"
+          example: "en"
+        targetLanguage:
+          type: string
+          description: Target language code
+          default: "fr"
+          example: "fr"
+    
+    TranslationResponse:
+      type: object
+      required:
+        - original
+        - translated
+      properties:
+        original:
+          type: string
+          description: Original text
+          example: "Hello, how are you today?"
+        translated:
+          type: string
+          description: Translated text
+          example: "Bonjour, comment allez-vous aujourd'hui?"
+        sourceLanguage:
+          type: string
+          description: Source language code
+          example: "en"
+        targetLanguage:
+          type: string
+          description: Target language code
+          example: "fr"
+    
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Translation service unavailable"
+        code:
+          type: string
+          description: Error code
+          example: "SERVICE_UNAVAILABLE"
