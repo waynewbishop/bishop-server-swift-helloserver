@@ -53,8 +53,12 @@ func configServer() async throws -> (Application, ServiceGroup) {
     
     let app = try await Vapor.Application.make()
     
-    // Register LoggingMiddleware
+    
+    //LoggingMiddleware is applied first, so it will log requests even if they later
+    //fail with errors, giving you a complete picture of your application's request handling
+    
     app.middleware.use(LoggingMiddleware(logger: logger))
+    app.middleware.use(ErrorHandlingMiddleware())
     
     let transport = VaporTransport(routesBuilder: app)
     let handler = HelloHandler()

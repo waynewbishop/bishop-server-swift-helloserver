@@ -25,9 +25,22 @@ struct TranslationService {
         "excuse me": "excusez-moi",
         "sorry": "désolé",
         "yes": "oui",
-        "no": "non"
+        "no": "non",
+        "cat": "chat",
+        "dog": "chien",
+        "fish": "poisson",
+        "bird": "oiseau",
+        "car": "voiture",
+        "house": "maison",
+        "tree": "arbre",
+        "computer": "ordinateur",
+        "book": "livre",
+        "phone": "téléphone",
+        "keyboard": "clavier",
+        "mouse": "souris",
     ]
     
+    ///Obtain translated french values from associated key english keys
     func translate(text: String, from sourceLanguage: String, to targetLanguage: String) -> String {
         // Only handle English to French for now
         guard sourceLanguage == "en" && targetLanguage == "fr" else {
