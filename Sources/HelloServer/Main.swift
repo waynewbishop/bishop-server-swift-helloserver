@@ -17,10 +17,6 @@ import OpenAPIVapor
 import Logging
 import ServiceLifecycle
 
-//TODO: What's next for this project? Adding middleware and DocC articles outlining the
-//existing server setup arcitecture? Do I really want to do a database? If so, I can really
-//see docker compose in action..
-
 @main
 struct HelloServerApp {
     static func main() async throws {
@@ -56,6 +52,9 @@ func configServer() async throws -> (Application, ServiceGroup) {
     logger.notice("Server started. Use Control+C to shut down gracefully.")
     
     let app = try await Vapor.Application.make()
+    
+    // Register LoggingMiddleware
+    app.middleware.use(LoggingMiddleware(logger: logger))
     
     let transport = VaporTransport(routesBuilder: app)
     let handler = HelloHandler()
